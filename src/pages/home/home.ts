@@ -10,11 +10,13 @@ import { ANIMALES } from '../../data/data.animales';
 export class HomePage {
 
   animales: Animal[] = [];
+
   constructor() {
 
- this.animales = ANIMALES.slice(0);
+ this.animales = ANIMALES.splice(0);
+
   }
-  public reproducir(animal:Animal){
+    reproducir(animal:Animal){
 
 
     let audio = new Audio();
@@ -23,6 +25,8 @@ export class HomePage {
     audio.load();
     audio.play();
 
-    setTimeout(()=> animal.reproduciendo = false, animal.duracion * 10);
+    animal.reproduciendo = true;
+
+    setTimeout(() => animal.reproduciendo = false, animal.duracion * 1000);
   }
 }
