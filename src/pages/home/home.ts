@@ -1,7 +1,7 @@
 import { Animal } from './../../interfaces/animal.interface';
 import { Component } from '@angular/core';
 import { ANIMALES } from '../../data/data.animales';
-import { Refresher } from 'ionic-angular';
+import { Refresher, reorderArray } from 'ionic-angular';
 
 
 @Component({
@@ -13,6 +13,7 @@ export class HomePage {
   animales: Animal[] = [];
   audio = new Audio();
   audioTiempo: any;
+  ordenar: boolean = false;
 
   constructor() {
 
@@ -35,7 +36,8 @@ export class HomePage {
 
     animal.reproduciendo = true;
 
-   this.audioTiempo = setTimeout(() => animal.reproduciendo = false, animal.duracion * 1000);
+   this.audioTiempo = setTimeout(() =>
+   animal.reproduciendo = false, animal.duracion * 1000);
   }
 
   private pausarAudio(animalSel:Animal){
@@ -58,12 +60,17 @@ export class HomePage {
     this.animales.splice(idx, 1);
   }
 
-  doRefresh(refresher:Refresher){
+  refrescar_lista (refresher:Refresher){
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+      console.log('Inicio ordenar');
       this.animales = ANIMALES.slice(0);
       refresher.complete();
-    }, 2000);
+    }, 1000);
+  }
+
+  reordenar_animales(indices){
+
+    this.animales = reorderArray(this.animales, indices);
   }
 }
