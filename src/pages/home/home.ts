@@ -57,6 +57,7 @@ export class HomePage {
 
     this.animales.splice(idx, 1);
   }
+
   doRefresh(refresher:Refresher){
 
     setTimeout(() => {
