@@ -1,6 +1,7 @@
 import { Animal } from './../../interfaces/animal.interface';
 import { Component } from '@angular/core';
 import { ANIMALES } from '../../data/data.animales';
+import { Refresher } from 'ionic-angular';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class HomePage {
 
   constructor() {
 
- this.animales = ANIMALES.splice(0);
+ this.animales = ANIMALES.slice(0);
 
   }
     reproducir(animal:Animal){
@@ -55,5 +56,13 @@ export class HomePage {
   borrar_animal (idx:number){
 
     this.animales.splice(idx, 1);
+  }
+  doRefresh(refresher:Refresher){
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.animales = ANIMALES.slice(0);
+      refresher.complete();
+    }, 2000);
   }
 }
