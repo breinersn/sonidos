@@ -52,4 +52,8 @@ export class HomePage {
       }
     }
   }
+  borrar_animal (idx:number){
+
+    this.animales.splice(idx, 1);
+  }
 }
